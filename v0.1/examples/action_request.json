@@ -1,0 +1,6 @@
+{
+  "episode_id": "example-episode",
+  "expected_step": 0,
+  "request_id": "example-request-0",
+  "action_id": "inspect"
+}

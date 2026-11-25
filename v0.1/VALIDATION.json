@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "date": "2026-10-29",
+  "python": "3.9.6",
+  "core_dependencies": "standard library",
+  "schema_validator": "jsonschema 4.23.0",
+  "tests_run": 13,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "test_command": "PYTHONPATH=interfaces/world-v0.1 .venv/bin/python -m unittest discover -s interfaces/world-v0.1/tests -v",
+  "bounded_demo": {
+    "status": "PASS",
+    "public_frames": 4,
+    "accepted_actions": 3,
+    "max_steps": 4
+  },
+  "independent_review": {
+    "core_contract_tests_passed": 9,
+    "blocking_findings": 0
+  },
+  "model_loads": 0,
+  "training_updates": 0,
+  "research_results": "None: synthetic interface fixture only"
+}

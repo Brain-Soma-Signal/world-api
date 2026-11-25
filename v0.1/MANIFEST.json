@@ -1,0 +1,107 @@
+{
+  "interface_version": "0.1.0",
+  "release_status": "frozen",
+  "frozen_date": "2026-10-29",
+  "world_fixture_version": "1.0.0",
+  "engine_version": "mock-0.1.0",
+  "change_policy": "No in-place edits to files listed here. Publish another version for changes.",
+  "hash_scope": "Listed payload files only; excludes MANIFEST.json and generated __pycache__. Archive checksum is outside this directory.",
+  "payload_index_sha256": "142b9fe19775d4832b8fee0ef8102e214682bd2282a444397ab1a78e5979e437",
+  "files": [
+    {
+      "path": "AI_NEW_ARCHITECTURE_HANDOFF.md",
+      "bytes": 9588,
+      "sha256": "3308f6ebb1a2cfa7d14f22f65cedac74265f61635111ef7c5228d58c7e72297c"
+    },
+    {
+      "path": "CONTRACT.md",
+      "bytes": 11409,
+      "sha256": "31e91581ff55286f6f5e06f0e5243e143065ef729fffc6962314bac120e8ea4c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3026,
+      "sha256": "c891ff3e128ef10efe12578cd7b51c37b05c794f5446bf779e97e4c963d6ccee"
+    },
+    {
+      "path": "VALIDATION.json",
+      "bytes": 668,
+      "sha256": "23c25b87d441e80a0ce1ad177a2a51421437095e97520bfde2b92073b588c38e"
+    },
+    {
+      "path": "examples/action_request.json",
+      "bytes": 123,
+      "sha256": "02e0a320957d2a437c3c985e78f0261cf177a2fc69bd5a0950584b45c868606d"
+    },
+    {
+      "path": "examples/frame_after_inspect.json",
+      "bytes": 951,
+      "sha256": "2aae09dee5db01820aea9aff0ed7441c7b057deca84124e99279af2fab5ccd67"
+    },
+    {
+      "path": "examples/frame_after_wait.json",
+      "bytes": 937,
+      "sha256": "62de9389d235495bb607e3331c51a17d72660a0e3b8881a59c6975d6593e1f16"
+    },
+    {
+      "path": "examples/frame_initial.json",
+      "bytes": 722,
+      "sha256": "e5ed0992770725802381f4e4d758b8755296f51e98baf2e3d7122b83365fc84d"
+    },
+    {
+      "path": "examples/frame_terminal.json",
+      "bytes": 667,
+      "sha256": "8a7a6830a0e02b7631245d5dc11bc051b0d66fa9bc1fa53f04a9a371cc90c73f"
+    },
+    {
+      "path": "examples/reset_request.json",
+      "bytes": 153,
+      "sha256": "8984182f9de44cb3d90d41cfb354d59e6b0a18b828f52d11f73d5259b3fcdb74"
+    },
+    {
+      "path": "examples/transcript.jsonl",
+      "bytes": 2661,
+      "sha256": "ec774eb8aeb9f5daf6d458094c10a4137125a54e3fbfcdedc03b89d0a830e8f1"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 19,
+      "sha256": "cb9e5058abe248be8579db704a1c9e30e655b30cb7d5dd093bebf97f44766591"
+    },
+    {
+      "path": "tests/test_contract.py",
+      "bytes": 7646,
+      "sha256": "19e13527e4db6514ce72277cc72a2904a0f1e0a15fc399f5118744e37e157f5e"
+    },
+    {
+      "path": "tests/test_schema.py",
+      "bytes": 3670,
+      "sha256": "3458c4fc529e815587ab1bfbde85c0d2a6862c78c5654235fb464bc19ae8fb87"
+    },
+    {
+      "path": "virtual_world_api/__init__.py",
+      "bytes": 352,
+      "sha256": "3a3905913aa5df31f677a77eee9863e744ccfed0c7ddbe034b8cb3ae6c44e67f"
+    },
+    {
+      "path": "virtual_world_api/api.py",
+      "bytes": 3719,
+      "sha256": "0a95ea5bbf53e77f62f338365ae3653f45ce65cdb2d6db9af7264d3b17a08f8f"
+    },
+    {
+      "path": "virtual_world_api/demo.py",
+      "bytes": 1059,
+      "sha256": "15f6c047f7fca28c5b1615a0b3aa2bf9c99a2b0bb22f7daade447113ee2cbd86"
+    },
+    {
+      "path": "virtual_world_api/mock.py",
+      "bytes": 9247,
+      "sha256": "9efaf3643df350a60e3bb6914e101168c53dba268b68a76da8e3aff974df44f9"
+    },
+    {
+      "path": "world.schema.json",
+      "bytes": 5562,
+      "sha256": "c1c27f0e50e536c739b676fbf83443b07e78cc5b194c391ab82c20c3c9bf96fc"
+    }
+  ]
+}

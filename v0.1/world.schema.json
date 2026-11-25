@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Virtual World interface v0.1.0",
+  "description": "顶层验证 Frame；请求分别使用 $defs/ResetRequest 和 $defs/ActionRequest。结构约束不替代状态、时序、幂等及信息隔离检查。",
+  "$ref": "#/$defs/Frame",
+  "$defs": {
+    "Identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "NullableIdentifier": {
+      "anyOf": [
+        { "$ref": "#/$defs/Identifier" },
+        { "type": "null" }
+      ]
+    },
+    "StepIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100000
+    },
+    "JsonValue": {
+      "anyOf": [
+        { "type": "null" },
+        { "type": "boolean" },
+        { "type": "string" },
+        { "type": "number" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/JsonValue" }
+        },
+        { "$ref": "#/$defs/JsonObject" }
+      ]
+    },
+    "JsonObject": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/JsonValue" }
+    },
+    "ResetRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "world_id",
+        "world_version",
+        "episode_id",
+        "seed",
+        "max_steps"
+      ],
+      "properties": {
+        "world_id": { "$ref": "#/$defs/Identifier" },
+        "world_version": { "$ref": "#/$defs/Identifier" },
+        "episode_id": { "$ref": "#/$defs/Identifier" },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "max_steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "reveal_world_id": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "ActionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "episode_id",
+        "expected_step",
+        "request_id",
+        "action_id"
+      ],
+      "properties": {
+        "episode_id": { "$ref": "#/$defs/Identifier" },
+        "expected_step": { "$ref": "#/$defs/StepIndex" },
+        "request_id": { "$ref": "#/$defs/Identifier" },
+        "action_id": { "$ref": "#/$defs/Identifier" }
+      }
+    },
+    "Observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "facts"],
+      "properties": {
+        "text": { "type": "string" },
+        "facts": { "$ref": "#/$defs/JsonObject" }
+      }
+    },
+    "Action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/Identifier" },
+        "label": { "type": "string" }
+      }
+    },
+    "Feedback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transition_id",
+        "from_step",
+        "action_id",
+        "reward",
+        "events"
+      ],
+      "properties": {
+        "transition_id": { "$ref": "#/$defs/Identifier" },
+        "from_step": { "$ref": "#/$defs/StepIndex" },
+        "action_id": { "$ref": "#/$defs/Identifier" },
+        "reward": { "type": ["number", "null"] },
+        "events": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "world_id",
+        "world_version",
+        "episode_id",
+        "step_index",
+        "observation",
+        "actions",
+        "last_feedback",
+        "terminated",
+        "truncated"
+      ],
+      "properties": {
+        "schema_version": { "const": "0.1.0" },
+        "world_id": { "$ref": "#/$defs/NullableIdentifier" },
+        "world_version": { "$ref": "#/$defs/NullableIdentifier" },
+        "episode_id": { "$ref": "#/$defs/Identifier" },
+        "step_index": { "$ref": "#/$defs/StepIndex" },
+        "observation": { "$ref": "#/$defs/Observation" },
+        "actions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Action" }
+        },
+        "last_feedback": {
+          "anyOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/Feedback" }
+          ]
+        },
+        "terminated": { "type": "boolean" },
+        "truncated": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "properties": {
+                "world_id": { "type": "null" },
+                "world_version": { "type": "null" }
+              }
+            },
+            {
+              "properties": {
+                "world_id": { "$ref": "#/$defs/Identifier" },
+                "world_version": { "$ref": "#/$defs/Identifier" }
+              }
+            }
+          ]
+        },
+        {
+          "if": { "properties": { "step_index": { "const": 0 } } },
+          "then": { "properties": { "last_feedback": { "type": "null" } } },
+          "else": { "properties": { "last_feedback": { "$ref": "#/$defs/Feedback" } } }
+        },
+        {
+          "not": {
+            "properties": {
+              "terminated": { "const": true },
+              "truncated": { "const": true }
+            }
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              { "properties": { "terminated": { "const": true } } },
+              { "properties": { "truncated": { "const": true } } }
+            ]
+          },
+          "then": { "properties": { "actions": { "maxItems": 0 } } }
+        }
+      ]
+    }
+  }
+}

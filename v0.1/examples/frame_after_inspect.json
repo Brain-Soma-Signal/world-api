@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.1.0",
+  "world_id": "demo.ledger",
+  "world_version": "1.0.0",
+  "episode_id": "example-episode",
+  "step_index": 1,
+  "observation": {
+    "text": "账房里有左右两只箱子，一只装有目标凭据。 当前线索：left。",
+    "facts": {
+      "signal": "left",
+      "inspection_count": 1,
+      "result": "none"
+    }
+  },
+  "actions": [
+    {
+      "id": "inspect",
+      "label": "观察线索"
+    },
+    {
+      "id": "wait",
+      "label": "等待"
+    },
+    {
+      "id": "choose_left",
+      "label": "选择左侧"
+    },
+    {
+      "id": "choose_right",
+      "label": "选择右侧"
+    }
+  ],
+  "last_feedback": {
+    "transition_id": "29ae95343d4f1ed03fa41c9abc95b31c0fa835a2db9551e20e728583b032bddb",
+    "from_step": 0,
+    "action_id": "inspect",
+    "reward": null,
+    "events": [
+      "观察到一条可能不可靠的线索：left"
+    ]
+  },
+  "terminated": false,
+  "truncated": false
+}
